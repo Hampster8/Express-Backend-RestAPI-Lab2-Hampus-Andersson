@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../routes/api.js/"></script>
+    <title>Express frontend</title>
+</head>
+<body>
+    <h1>Hampus Andersson</h1>
+    <section id="importJSON">
+        <code class="language-javascript">
+            <h3>Use these suffixes to maneuver the website:</h3>
+            <ul>
+                <li><a href="http://localhost:1234/api/names">/api/names</a></li>
+                <li><a href="http://localhost:1234/api/posts">/api/posts</a></li>
+                <li><a href="http://localhost:1234/api/companies">/api/companies</a></li>
+            </ul>
+
+            
+            
+            <p>
+                Code used to fetch the different JSON files.<br>
+                let url = "https://jsonplaceholder.typicode.com/todos/" + getRandom();<br>
+                fetch(url)<br>
+                .then(response => response.json())<br>
+                .then(json => console.log(json))<br>
+            </p>
+        </code>
+        <button id="run-button" onclick="readJson()">Fetch</button>
+        <div id="fetchJson">
+            
+        </div>
+            <script>
+                function readJson() {
+                    function getRandom() {
+                        const max = 199;
+                        return Math.floor(Math.random() * max).toString();
+                    }   
+                    let url = "https://jsonplaceholder.typicode.com/todos/" + getRandom();
+                    console.log(url);
+                    fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        document.querySelector("#fetchJson").innerText = JSON.stringify(data, null, 2);
+                    });
+                }
+            </script>
+    </section>
+    
+</body>
+</html>
